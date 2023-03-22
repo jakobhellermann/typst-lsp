@@ -32,6 +32,17 @@
                 "scopeName": "source.typst",
                 "path": "./typst.tmLanguage.json"
             }
+        ],
+        "customEditors": [
+            {
+                "viewType": "typst-lsp-typst-preview",
+                "displayName": "Typst Preview",
+                "selector": [
+                    {
+                        "filenamePattern": "*.pdf"
+                    }
+                ]
+            }
         ]
     },
     "scripts": {
