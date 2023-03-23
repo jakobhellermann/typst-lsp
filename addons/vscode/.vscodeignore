@@ -1,0 +1,7 @@
+# Ignore everything that shouldn't be bundled into the extension
+**
+!out/extension.js
+!package.json
+!package-lock.json
+!language-configuration.json
+!typst.tmLanguage.json
