@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile extension",
+            "type": "npm",
+            "script": "compile",
+            "options": {
+                "cwd": "addons/vscode",
+            },
+            "presentation": {
+                "close": true,
+            }
+        },
+        {
+            "label": "Compile server binary",
+            "type": "shell",
+            "command": "file=$(cargo build --message-format json | jq '. | select(.reason == \"compiler-artifact\") | select(.target.kind == [\"bin\"]) | .executable' -r); mkdir -p addons/vscode/out; rm -f addons/vscode/out/typst-lsp; cp \"$file\" addons/vscode/out",
+            "problemMatcher": "$rustc",
+            "presentation": {
+                "close": true,
+            }
+        },
+        {
+            "label": "Compile server binary (Release)",
+            "type": "shell",
+            "command": "file=$(cargo build --release --message-format json | jq '. | select(.reason == \"compiler-artifact\") | select(.target.kind == [\"bin\"]) | .executable' -r); mkdir -p addons/vscode/out; rm -f addons/vscode/out/typst-lsp; cp \"$file\" addons/vscode/out",
+            "problemMatcher": "$rustc",
+            "presentation": {
+                "close": true,
+            }
+        },
+        {
+            "label": "Build",
+            "dependsOn": [
+                "Compile server binary",
+                "Compile extension",
+            ],
+        },
+        {
+            "label": "Build (Release)",
+            "dependsOn": [
+                "Compile server binary (Release)",
+                "Compile extension",
+            ],
+        }
+    ]
+}

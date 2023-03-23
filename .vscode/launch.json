@@ -11,7 +11,21 @@
             ],
             "outFiles": [
                 "${workspaceFolder}/addons/vscode/out/**/*.js"
-            ]
+            ],
+            "preLaunchTask": "Build"
+        },
+        {
+            "name": "Run Extension (Release)",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceFolder}/addons/vscode"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/addons/vscode/out/**/*.js"
+            ],
+            "preLaunchTask": "Build (Release)"
         }
     ]
 }
